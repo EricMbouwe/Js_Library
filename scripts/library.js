@@ -14,7 +14,7 @@ function Book(author, title, numPages, read = 'unread') {
 
 myBooks.onclick = function (e) {
     var response = window.confirm("Are you sure you want to remove this book?");
-    if (e.target && e.target.nodeName == "button" && response === true) {
+    if (e.target && e.target.nodeName == "BUTTON" && response === true) {
       e.target.parentNode.remove();
       event.preventDefault;
     }
@@ -85,4 +85,4 @@ const addItem = () => {
   return false;
 };
 
-// newBook.onsubmit = addItem;
+newBook.onsubmit = addItem;
