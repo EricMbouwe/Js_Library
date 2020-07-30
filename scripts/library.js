@@ -3,6 +3,7 @@ const myBooks = document.getElementById('books');
 const newBook = document.getElementById('create-book');
 const checkbox = document.getElementById("read");
 const deleteBtn = document.getElementById('delete-book');
+const addBtn = document.getElementsByClassName('add-btn')
 
 
 function Book(author, title, numPages, read = 'unread') {
@@ -12,7 +13,12 @@ function Book(author, title, numPages, read = 'unread') {
   this.read = read;
 }
 
-myBooks.onclick = function (e) {
+const formDisplay = () => {
+  newBook.classList.remove('d-none');
+  newBook.classList.add("d-block");
+}
+
+const deleteBook = (e) => {
     var response = window.confirm("Are you sure you want to remove this book?");
     if (e.target && e.target.nodeName == "BUTTON" && response === true) {
       e.target.parentNode.remove();
@@ -21,7 +27,7 @@ myBooks.onclick = function (e) {
   false
 };
 
-const reset = function (author, title, numPages, checkbox) {
+const resetForm = function (author, title, numPages, checkbox) {
   author.value = '';
   title.value = '';
   numPages.value = '';
@@ -50,7 +56,7 @@ const render = function () {
 };
 
 
-const addItem = () => {
+const addBook = function() {
   const author = document.getElementById('author');
   const authorVal = author.value;
 
@@ -79,10 +85,13 @@ const addItem = () => {
   }
 
   const book = new Book(authorVal, titleVal, numPagesVal, boxVal());
+
   myLibrary.push(book);
   render();
-  reset(author, title, numPages, checkbox);
+  resetForm(author, title, numPages, checkbox);
   return false;
 };
 
-newBook.onsubmit = addItem;
+newBook.onsubmit = addBook;
+myBooks.onclick = deleteBook;
+addBtn.onclick = formDisplay;
