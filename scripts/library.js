@@ -1,4 +1,4 @@
-let myLibrary = [];
+const myLibrary = [];
 
 function Book(author, title, numPages, read = false) {
   this.author = author;
@@ -17,9 +17,7 @@ const addItem = () => {
   const numPages = document.getElementById('numPages');
   const numPagesVal = numPages.value;
 
-  if (!authorVal) {
-    return alert("author can't be blank");
-  }
+  if (!authorVal) { return ("author can't be blank"); }
 
   const book = new Book(authorVal, titleVal, numPagesVal);
   return myLibrary.push(book);
