@@ -18,7 +18,7 @@
   <body class="container">
     <div id="new-book">
       <h1>New book</h1>
-      <form onsubmit="return addItem()" class="mb-3">
+      <form id="create-book" onsubmit="return addItem()" class="mb-3">
         <div class="mb-3">
           <label for="exampleInputEmail1" class="form-label">Author</label>
           <input type="text" class="form-control" id="author" />
@@ -32,20 +32,20 @@
           <input type="text" class="form-control" id="numPages" />
         </div>
         <div class="mb-3 form-check">
-          <input type="checkbox" class="form-check-input" id="exampleCheck1" />
+          <input type="checkbox" class="form-check-input" id="read" />
           <label class="form-check-label" for="exampleCheck1">Read</label>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">create</button>
       </form>
     </div>
 
     <div class="lib-content">
       <h1>Library</h1>
-      <div id="books"></div>
+      <div id="books" class="d-flex"></div>
     </div>
 
     <script src="scripts/library.js"></script>
-    <script type="module" src="scripts/main.js"></script>
+    <script src="scripts/main.js"></script>
 
     <script
       src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
