@@ -3,7 +3,6 @@ const myBooks = document.getElementById("books");
 const newBook = document.getElementById("create-book");
 const checkbox = document.getElementById("read");
 const deleteBtn = document.getElementById("delete-book");
-const addBtn = document.getElementsByClassName("add-btn");
 const formToggle = document.getElementById("form-toggle");
 
 // if(!localStorage.length == 0 {
@@ -12,24 +11,16 @@ const formToggle = document.getElementById("form-toggle");
 //   setStyles();
 // }
 
-function form() {
-  var x = document.getElementById("create-book");
-  x.classList.toggle("d-none");
-}
-
-formToggle.onclick = form;
-
-function Book(author, title, numPages, read = "unread") {
+function Book(author, title, numPages, read) {
   this.author = author;
   this.title = title;
   this.numPages = numPages;
   this.read = read;
 }
 
-const formDisplay = () => {
-  newBook.classList.remove("d-none");
-  newBook.classList.add("d-block");
-};
+const formDisplay = function () {
+  newBook.classList.toggle("d-none");
+}
 
 const resetForm = function (author, title, numPages, checkbox) {
   author.value = "";
@@ -84,7 +75,6 @@ document.querySelector("body").addEventListener("click", function (event) {
 });
 
 const addBook = function () {
-  let pk = 1;
   const author = document.getElementById("author");
   const authorVal = author.value;
 
@@ -98,6 +88,7 @@ const addBook = function () {
     if (checkbox.checked == true) {
       return "read";
     }
+    return "unread";
   };
 
   if (!authorVal) {
@@ -115,18 +106,13 @@ const addBook = function () {
   const book = new Book(authorVal, titleVal, numPagesVal, boxVal());
   myLibrary.push(book);
 
-  function counter {
-    var counter = 0
-    function plus() {counter += 1;}
-    plus();   
-    return counter;
-  }
-  localStorage.setItem("", JSON.stringify(book));
-  pk++;
+  localStorage.setItem('myLibrary', JSON.stringify(book));
+
   render();
   resetForm(author, title, numPages, checkbox);
   return false;
 };
 
 newBook.onsubmit = addBook;
-addBtn.onclick = formDisplay;
+formToggle.onclick = formDisplay;
+
