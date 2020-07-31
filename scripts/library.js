@@ -6,6 +6,12 @@ const deleteBtn = document.getElementById("delete-book");
 const addBtn = document.getElementsByClassName("add-btn");
 const formToggle = document.getElementById("form-toggle");
 
+// if(!localStorage.length == 0 {
+//   populateStorage();
+// } else {
+//   setStyles();
+// }
+
 function form() {
   var x = document.getElementById("create-book");
   x.classList.toggle("d-none");
@@ -78,6 +84,7 @@ document.querySelector("body").addEventListener("click", function (event) {
 });
 
 const addBook = function () {
+  let pk = 1;
   const author = document.getElementById("author");
   const authorVal = author.value;
 
@@ -106,8 +113,16 @@ const addBook = function () {
   }
 
   const book = new Book(authorVal, titleVal, numPagesVal, boxVal());
-
   myLibrary.push(book);
+
+  function counter {
+    var counter = 0
+    function plus() {counter += 1;}
+    plus();   
+    return counter;
+  }
+  localStorage.setItem("", JSON.stringify(book));
+  pk++;
   render();
   resetForm(author, title, numPages, checkbox);
   return false;
