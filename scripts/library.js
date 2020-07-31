@@ -4,6 +4,14 @@ const newBook = document.getElementById("create-book");
 const checkbox = document.getElementById("read");
 const deleteBtn = document.getElementById("delete-book");
 const addBtn = document.getElementsByClassName("add-btn");
+const formToggle = document.getElementById("form-toggle");
+
+function form() {
+  var x = document.getElementById("create-book");
+  x.classList.toggle("d-none");
+}
+
+formToggle.onclick = form;
 
 function Book(author, title, numPages, read = "unread") {
   this.author = author;

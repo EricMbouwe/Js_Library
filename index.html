@@ -16,15 +16,44 @@
   </head>
 
   <body class="container">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">MyLibrary</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a
+                id="form-toggle"
+                class="nav-link active"
+                aria-current="page"
+                href="#"
+                >New Book</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
     <div id="new-book">
-      <h1>New book</h1>
-      <form id="create-book" class="mb-3">
+      <form id="create-book" class="mb-3 d-none">
         <div class="mb-3">
           <label for="exampleInputEmail1" class="form-label">Author</label>
           <input type="text" class="form-control" id="author" />
         </div>
         <div class="mb-3">
-          <label for="exampleInputEmail1" class="form-label">title</label>
+          <label for="exampleInputEmail1" class="form-label">Title</label>
           <input type="text" class="form-control" id="title" />
         </div>
         <div class="mb-3">
@@ -35,11 +64,9 @@
           <input type="checkbox" class="form-check-input" id="read" />
           <label class="form-check-label" for="exampleCheck1">Read</label>
         </div>
-        <button type="submit" class="btn btn-primary">create</button>
+        <button type="submit" class="btn btn-primary">Add to Library</button>
       </form>
     </div>
-
-    <a class="add-btn btn btn-secondary mt-5">open form</a>
 
     <div class="lib-content">
       <h1>Library</h1>
