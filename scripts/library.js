@@ -5,11 +5,6 @@ const checkbox = document.getElementById("read");
 const deleteBtn = document.getElementById("delete-book");
 const formToggle = document.getElementById("form-toggle");
 
-// if(!localStorage.length == 0 {
-//   populateStorage();
-// } else {
-//   setStyles();
-// }
 
 function Book(author, title, numPages, read) {
   this.author = author;
@@ -29,7 +24,7 @@ const resetForm = function (author, title, numPages, checkbox) {
   checkbox.checked = false;
 };
 
-const render = function () {
+const renderOne = function () {
   lastItem = myLibrary.slice(-1)[0];
   const card = `<div class='card mx-3' style='width: 15rem;'>
                   <div class='card-body'>
@@ -49,6 +44,28 @@ const render = function () {
   ele.innerHTML = card;
   myBooks.appendChild(ele);
 };
+
+const renderAll = function () {
+  myLibrary.forEach(book => {
+    const card = `<div class='card mx-3' style='width: 15rem;'>
+                  <div class='card-body'>
+                    <h5 class='card-title'>${book.title}</h5>
+                    <h6 class='card-subtitle mb-2 text-muted'>${book.author}</h6>
+                    <p class='card-text'>
+                    ${book.numPages}
+                    </p>
+                    <button value="${lastItem.read}" id="read-status" class='btn btn-primary card-text'>
+                    ${book.read}
+                    </button>
+                  </div>
+                  <button type='button' id='delete-book' class='btn btn-danger'>Delete</button>
+                </div>`;
+
+    const ele = document.createElement("div");
+    ele.innerHTML = card;
+    myBooks.appendChild(ele);
+  });
+}
 
 document.querySelector("body").addEventListener("click", function (event) {
   if (event.target.id === "read-status") {
@@ -91,27 +108,22 @@ const addBook = function () {
     return "unread";
   };
 
-  if (!authorVal) {
-    return alert("author can't be blank");
-  }
-
-  if (!titleVal) {
-    return alert("title can't be blank");
-  }
-
-  if (!numPagesVal) {
-    return alert("pages can't be blank");
-  }
-
   const book = new Book(authorVal, titleVal, numPagesVal, boxVal());
   myLibrary.push(book);
 
   localStorage.setItem('myLibrary', JSON.stringify(book));
 
-  render();
+  renderOne();
   resetForm(author, title, numPages, checkbox);
-  return false;
+  return false;  // stop submitting the form
 };
+
+
+if (localStorage.length > 0) {
+  renderAll();
+} else {
+  //
+}
 
 newBook.onsubmit = addBook;
 formToggle.onclick = formDisplay;
