@@ -1,10 +1,9 @@
 .centered {
-  border: 1px solid green;
   position: absolute;
   top: 15vh;
   left: 35vw;
-  width: 30%;
-  padding: 20px;
+  width: 20%;
+  padding: 80px 30px;
   -webkit-box-shadow: 0px 0px 22px 0px #000000; 
   box-shadow: 0px 0px 22px 0px #000000;
   background-color: rgb(4, 42, 78);
