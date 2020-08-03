@@ -6,21 +6,16 @@ const deleteBtn = document.getElementById("delete-book");
 const formToggle = document.getElementById("form-toggle");
 
 
-function Book(author, title, numPages, read) {
+function Book(id, author, title, numPages, read) {
+  this.id = id;
   this.author = author;
   this.title = title;
   this.numPages = numPages;
   this.read = read;
-  // this.id = counter();
 }
 
-Book.prototype.toggleRead =  function () {
-  this.read = 'read'
-}
-
-// const counter = function () {
-//   const count = 0;
-//   ++count;
+// Book.prototype.toggleRead = () => {
+//   this.read = 'read'
 // }
 
 const formDisplay = function () {
@@ -79,33 +74,35 @@ const renderAll = function () {
   });
 }
 
-document.querySelector("body").addEventListener("click", function (event, book) {
+document.querySelector("body").addEventListener("click", function (event) {
   if (event.target.id === "read-status") {
     var element = event.target;
     if (element.value == "unread") {
       element.value = "read";
       element.innerHTML = "read";
-      // book.toggleRead();
+      // this.toggleRead();
     } else {
       element.value = "unread";
       element.innerHTML = "unread";
-      // book.toggleRead();
+      // this.toggleRead();
     }
   }
 });
 
-document.querySelector("body").addEventListener("click", function (event) {
+document.querySelector("body").addEventListener("click", (event) => {
   if (event.target.id === "delete-book") {
     var response = window.confirm("Are you sure you want to remove this book?");
     if (event.target && response === true) {
       event.target.parentNode.remove();
+      const index = myLibrary.indexOf(this);
+      myLibrary.splice(index, 1);
       event.preventDefault;
     }
     false;
   }
 });
 
-const addBook = function () {
+const addBook = () =>{
   const author = document.getElementById("author");
   const authorVal = author.value;
 
@@ -122,7 +119,14 @@ const addBook = function () {
     return "unread";
   };
 
-  const book = new Book(authorVal, titleVal, numPagesVal, boxVal());
+  if (myLibrary.length === 0) {
+    this.id = 1;
+  } else {
+    this.id = myLibrary.length + 1;
+  }
+
+  const book = new Book(id, authorVal, titleVal, numPagesVal, boxVal());
+
   myLibrary.push(book);
 
   localStorage.setItem('myLibrary', JSON.stringify(book));
@@ -132,13 +136,6 @@ const addBook = function () {
   newBook.classList.toggle("d-none");
   return false;  // stop submitting the form
 };
-
-
-if (localStorage.length > 0) {
-  renderAll();
-} else {
-  //
-}
 
 newBook.onsubmit = addBook;
 formToggle.onclick = formDisplay;

@@ -1,91 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <!-- Bootstrap CSS -->
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
-      integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I"
-      crossorigin="anonymous"
-    />
-    <!-- <link rel="stylesheet" href="style.css"> -->
-    <link rel="stylesheet" href="main.css">
-    <title>Hello, world!</title>
-  </head>
 
-  <body class="container">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#">MyLibrary</a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a
-                id="form-toggle"
-                class="nav-link active"
-                aria-current="page"
-                href="#"
-                >New Book</a
-              >
-            </li>
-          </ul>
-        </div>
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
+    integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous" />
+  <!-- <link rel="stylesheet" href="style.css"> -->
+  <link rel="stylesheet" href="main.css">
+  <title>Hello, world!</title>
+</head>
+
+<body class="container">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">MyLibrary</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a id="form-toggle" class="nav-link active" aria-current="page" href="#">New Book</a>
+          </li>
+        </ul>
       </div>
-    </nav>
-
-    <div id="new-book">
-      <form id="create-book" class="mb-3 d-none">
-        <div class="mb-3">
-          <label for="exampleInputEmail1" class="form-label">Author</label>
-          <input type="text" class="form-control" id="author" required />
-        </div>
-        <div class="mb-3">
-          <label for="exampleInputEmail1" class="form-label">Title</label>
-          <input type="text" class="form-control" id="title" required />
-        </div>
-        <div class="mb-3">
-          <label for="exampleInputEmail1" class="form-label">Num pages</label>
-          <input type="number" class="form-control" id="numPages" required />
-        </div>
-        <div class="mb-3 form-check">
-          <input type="checkbox" class="form-check-input" id="read" />
-          <label class="form-check-label" for="exampleCheck1">Read</label>
-        </div>
-        <button type="submit" class="btn btn-primary">Add to Library</button>
-      </form>
     </div>
+  </nav>
 
-    <div class="lib-content">
-      <h1>Library</h1>
-      <div id="books" class="d-flex"></div>
-    </div>
+  <div id="new-book">
+    <form id="create-book" class="mb-3 d-none">
+      <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Author</label>
+        <input type="text" class="form-control" id="author" required />
+      </div>
+      <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Title</label>
+        <input type="text" class="form-control" id="title" required />
+      </div>
+      <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Num pages</label>
+        <input type="number" class="form-control" id="numPages" required />
+      </div>
+      <div class="mb-3 form-check">
+        <input type="checkbox" class="form-check-input" id="read" />
+        <label class="form-check-label" for="exampleCheck1">Read</label>
+      </div>
+      <button type="submit" class="btn btn-primary">Add to Library</button>
+    </form>
+  </div>
 
-    <script src="scripts/library.js"></script>
-    <script src="scripts/main.js"></script>
+  <div class="lib-content">
+    <h1>Library</h1>
+    <div id="books" class="d-flex flex-wrap"></div>
+  </div>
 
-    <script
-      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
-      integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
-      crossorigin="anonymous"
-    ></script>
-  </body>
+  <script src="scripts/library.js"></script>
+  <script src="scripts/main.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
+    integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
+    crossorigin="anonymous"></script>
+</body>
+
 </html>
