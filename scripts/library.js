@@ -11,10 +11,22 @@ function Book(author, title, numPages, read) {
   this.title = title;
   this.numPages = numPages;
   this.read = read;
+  // this.id = counter();
 }
+
+Book.prototype.toggleRead =  function () {
+  this.read = 'read'
+}
+
+// const counter = function () {
+//   const count = 0;
+//   ++count;
+// }
 
 const formDisplay = function () {
   newBook.classList.toggle("d-none");
+  newBook.classList.add('centered')
+  document.querySelector("body").classList.add('blured')
 }
 
 const resetForm = function (author, title, numPages, checkbox) {
@@ -67,15 +79,17 @@ const renderAll = function () {
   });
 }
 
-document.querySelector("body").addEventListener("click", function (event) {
+document.querySelector("body").addEventListener("click", function (event, book) {
   if (event.target.id === "read-status") {
     var element = event.target;
     if (element.value == "unread") {
       element.value = "read";
       element.innerHTML = "read";
+      // book.toggleRead();
     } else {
       element.value = "unread";
       element.innerHTML = "unread";
+      // book.toggleRead();
     }
   }
 });
@@ -115,6 +129,7 @@ const addBook = function () {
 
   renderOne();
   resetForm(author, title, numPages, checkbox);
+  newBook.classList.toggle("d-none");
   return false;  // stop submitting the form
 };
 
