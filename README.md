@@ -34,18 +34,14 @@ Open index.html in browser and enjoy :smiley:
 
 ## Authors
 
-:bust_in_silhouette: **Author_1**
-
-## Eric Mbouwe
+:bust_in_silhouette: **Eric Mbouwe**
 
 - Github: [@ericmbouwe](https://github.com/ericmbouwe)
 - Twitter: [@ericmbouwe](https://twitter.com/ericmbouwe)
 - Linkedin: [Eric Mbouwe](https://www.linkedin.com/in/ericmbouwe/)
 - E-mail: ericmbouwe@gmail.com
 
-:bust_in_silhouette: **Author_2**
-
-## Azeem Ahmed
+:bust_in_silhouette: **Azeem Ahmed**
 
 - Github: [@Azeem838](https://github.com/Azeem838)
 - LinkedIn: [Azeem Ahmed](www.linkedin.com/in/azeemmahmed)
