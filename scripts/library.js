@@ -1,8 +1,8 @@
 const myLibrary = [];
-const myBooks = document.getElementById('books');
-const newBook = document.getElementById('create-book');
-const checkbox = document.getElementById('read');
-const formToggle = document.getElementById('form-toggle');
+const myBooks = document.getElementById("books");
+const newBook = document.getElementById("create-book");
+const checkbox = document.getElementById("read");
+const formToggle = document.getElementById("form-toggle");
 
 function Book(author, title, numPages, read) {
   this.author = author;
@@ -12,15 +12,15 @@ function Book(author, title, numPages, read) {
 }
 
 const formDisplay = () => {
-  newBook.classList.toggle('d-none');
-  newBook.classList.add('centered');
-  document.querySelector('body').classList.add('blured');
+  newBook.classList.toggle("d-none");
+  newBook.classList.add("centered");
+  document.querySelector("body").classList.add("blured");
 };
 
 const resetForm = (author, title, numPages, checkbox) => {
-  author.value = '';
-  title.value = '';
-  numPages.value = '';
+  author.value = "";
+  title.value = "";
+  numPages.value = "";
   checkbox.checked = false;
 };
 
@@ -40,28 +40,29 @@ const renderOne = () => {
                   <button type='button' id='delete-book' class='btn btn-danger'>Delete</button>
                 </div>`;
 
-  const ele = document.createElement('div');
+  const ele = document.createElement("div");
   ele.innerHTML = card;
   myBooks.appendChild(ele);
 };
 
-document.querySelector('body').addEventListener('click', (event) => {
-  if (event.target.id === 'read-status') {
+document.querySelector("body").addEventListener("click", (event) => {
+  if (event.target.id === "read-status") {
     const element = event.target;
-    if (element.value === 'unread') {
-      element.value = 'read';
-      element.innerHTML = 'read';
+    if (element.value === "unread") {
+      element.value = "read";
+      element.innerHTML = "read";
     } else {
-      element.value = 'unread';
-      element.innerHTML = 'unread';
+      element.value = "unread";
+      element.innerHTML = "unread";
     }
   }
 });
 
-document.querySelector('body').addEventListener('click', (event) => {
-  if (event.target.id === 'delete-book') {
-    const response = window.confirm( // eslint-disable-line no-alert
-      'Are you sure you want to remove this book?',
+document.querySelector("body").addEventListener("click", (event) => {
+  if (event.target.id === "delete-book") {
+    const response = window.confirm(
+      // eslint-disable-line no-alert
+      "Are you sure you want to remove this book?"
     );
     if (event.target && response === true) {
       event.target.parentNode.remove();
@@ -74,31 +75,31 @@ document.querySelector('body').addEventListener('click', (event) => {
 });
 
 const addBook = () => {
-  const author = document.getElementById('author');
+  const author = document.getElementById("author");
   const authorVal = author.value;
 
-  const title = document.getElementById('title');
+  const title = document.getElementById("title");
   const titleVal = title.value;
 
-  const numPages = document.getElementById('numPages');
+  const numPages = document.getElementById("numPages");
   const numPagesVal = numPages.value;
 
   const boxVal = () => {
     if (checkbox.checked === true) {
-      return 'read';
+      return "read";
     }
-    return 'unread';
+    return "unread";
   };
 
   const book = new Book(authorVal, titleVal, numPagesVal, boxVal());
 
   myLibrary.push(book);
 
-  localStorage.setItem('myLibrary', JSON.stringify(book));
+  localStorage.setItem("myLibrary", JSON.stringify(book));
 
   renderOne();
   resetForm(author, title, numPages, checkbox);
-  newBook.classList.toggle('d-none');
+  newBook.classList.toggle("d-none");
   return false;
 };
 
