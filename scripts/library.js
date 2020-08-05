@@ -3,6 +3,9 @@ const myBooks = document.getElementById('books');
 const newBook = document.getElementById('create-book');
 const checkbox = document.getElementById('read');
 const formToggle = document.getElementById('form-toggle');
+const author = document.getElementById('author');
+const title = document.getElementById('title');
+const numPages = document.getElementById('numPages');
 
 function Book(author, title, numPages, read) {
   this.author = author;
@@ -17,31 +20,31 @@ const formDisplay = () => {
   document.querySelector('body').classList.add('blured');
 };
 
-const resetForm = (author, title, numPages, checkbox) => {
+const resetForm = () => {
   author.value = '';
   title.value = '';
   numPages.value = '';
   checkbox.checked = false;
 };
 
-const renderOne = () => {
-  const lastItem = myLibrary.slice(-1)[0];
-  const card = `<div class='card mx-3' style='width: 15rem;'>
-                  <div class='card-body'>
-                    <h5 class='card-title'>${lastItem.title}</h5>
-                    <h6 class='card-subtitle mb-2 text-muted'>${lastItem.author}</h6>
-                    <p class='card-text'>
-                    ${lastItem.numPages}
-                    </p>
-                    <button value="${lastItem.read}" id="read-status" class='btn btn-primary card-text'>
-                    ${lastItem.read}
-                    </button>
-                  </div>
-                  <button type='button' id='delete-book' class='btn btn-danger'>Delete</button>
-                </div>`;
 
+const card = (lastItem) => `<div class='card mx-3' style='width: 15rem;'>
+    <div class='card-body'>
+    <h5 class='card-title'>${lastItem.title}</h5>
+    <h6 class='card-subtitle mb-2 text-muted'>${lastItem.author}</h6>
+    <p class='card-text'>
+    ${lastItem.numPages}
+    </p>
+    <button value="${lastItem.read}" id="read-status" class='btn btn-primary card-text'>
+    ${lastItem.read}
+    </button>
+    </div>
+    <button type='button' id='delete-book' class='btn btn-danger'>Delete</button>
+    </div>`;
+
+const render = (lastItem) => {
   const ele = document.createElement('div');
-  ele.innerHTML = card;
+  ele.innerHTML = card(lastItem);
   myBooks.appendChild(ele);
 };
 
@@ -60,8 +63,7 @@ document.querySelector('body').addEventListener('click', (event) => {
 
 document.querySelector('body').addEventListener('click', (event) => {
   if (event.target.id === 'delete-book') {
-    const response = window.confirm(
-      // eslint-disable-line no-alert
+    const response = window.confirm( // eslint-disable-line no-alert
       'Are you sure you want to remove this book?',
     );
     if (event.target && response === true) {
@@ -70,38 +72,37 @@ document.querySelector('body').addEventListener('click', (event) => {
       myLibrary.splice(index, 1);
       event.preventDefault();
     }
-    false();
   }
 });
 
-const addBook = () => {
-  const author = document.getElementById('author');                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
+const boxVal = () => {
+  if (checkbox.checked === true) {
+    return 'read';
+  }
+  return 'unread';
+};
+
+const addBookToLibrary = () => {
   const authorVal = author.value;
-
-  const title = document.getElementById('title');
   const titleVal = title.value;
-
-  const numPages = document.getElementById('numPages');
   const numPagesVal = numPages.value;
+  const read = boxVal();
 
-  const boxVal = () => {
-    if (checkbox.checked === true) {
-      return 'read';
-    }
-    return 'unread';
-  };
-
-  const book = new Book(authorVal, titleVal, numPagesVal, boxVal());
+  const book = new Book(authorVal, titleVal, numPagesVal, read);
 
   myLibrary.push(book);
-  
+
   localStorage.setItem('myLibrary', JSON.stringify(book));
-  
-  renderOne();
-  newBook.classList.toggle('d-none');
-  resetForm(author, title, numPages, checkbox);
+
   return false;
 };
 
-newBook.onsubmit = addBook;
+newBook.onsubmit = () => {
+  addBookToLibrary();
+  const lastItem = myLibrary.slice(-1)[0];
+  render(lastItem);
+  newBook.classList.toggle('d-none');
+  resetForm();
+};
+
 formToggle.onclick = formDisplay;
