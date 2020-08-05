@@ -75,7 +75,7 @@ document.querySelector('body').addEventListener('click', (event) => {
 });
 
 const addBook = () => {
-  const author = document.getElementById('author');
+  const author = document.getElementById('author');                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
   const authorVal = author.value;
 
   const title = document.getElementById('title');
@@ -94,12 +94,12 @@ const addBook = () => {
   const book = new Book(authorVal, titleVal, numPagesVal, boxVal());
 
   myLibrary.push(book);
-
+  
   localStorage.setItem('myLibrary', JSON.stringify(book));
-
+  
   renderOne();
-  resetForm(author, title, numPages, checkbox);
   newBook.classList.toggle('d-none');
+  resetForm(author, title, numPages, checkbox);
   return false;
 };
 
