@@ -14,10 +14,19 @@ function Book(author, title, numPages, read) {
   this.read = read;
 }
 
-const formDisplay = () => {
+const changeReadStatus = (index) => {
+  const book = myLibrary[index];
+  if (book.read === 'read') {
+    book.read = 'unread';
+    event.target.innerHTML = 'unread';
+  } else {
+    book.read = 'read';
+    event.target.innerHTML = 'read';
+  }
+};
+
+const displayForm = () => {
   newBook.classList.toggle('d-none');
-  newBook.classList.add('centered');
-  document.querySelector('body').classList.add('blured');
 };
 
 const resetForm = () => {
@@ -27,55 +36,38 @@ const resetForm = () => {
   checkbox.checked = false;
 };
 
-
-const card = (lastItem) => `<div class='card mx-3' style='width: 15rem;'>
+const card = (item, index) => `<div class='card mx-3' style='width: 15rem;>
     <div class='card-body'>
-    <h5 class='card-title'>${lastItem.title}</h5>
-    <h6 class='card-subtitle mb-2 text-muted'>${lastItem.author}</h6>
+    <h5 class='card-title'>${item.title}</h5>
+    <h6 class='card-subtitle mb-2 text-muted'>${item.author}</h6>
     <p class='card-text'>
-    ${lastItem.numPages}
+    ${item.numPages}
     </p>
-    <button value="${lastItem.read}" id="read-status" class='btn btn-primary card-text'>
-    ${lastItem.read}
-    </button>
+    <button id="read-status" class='btn btn-primary card-text' onclick='changeReadStatus(${index})'>${item.read}</button>
     </div>
-    <button type='button' id='delete-book' class='btn btn-danger'>Delete</button>
+    <button type='button' id='delete-book' class='btn btn-danger' onclick='deleteBook(${index})'>Delete</button>
     </div>`;
 
-const render = (lastItem) => {
+const render = () => {
   const ele = document.createElement('div');
-  ele.innerHTML = card(lastItem);
+  for (let i = 0; i < myLibrary.length; i += 1) {
+    const item = myLibrary[i];
+    ele.innerHTML = card(item, i);
+  }
   myBooks.appendChild(ele);
 };
 
-document.querySelector('body').addEventListener('click', (event) => {
-  if (event.target.id === 'read-status') {
-    const element = event.target;
-    if (element.value === 'unread') {
-      element.value = 'read';
-      element.innerHTML = 'read';
-    } else {
-      element.value = 'unread';
-      element.innerHTML = 'unread';
-    }
+const deleteBook = (index) => {
+  const response = window.confirm(// eslint-disable-line no-alert
+    'Are you sure you want to remove this book?',
+  );
+  if (response === true) {
+    myLibrary.splice(index, 1);
+    event.target.parentNode.remove();
   }
-});
+};
 
-document.querySelector('body').addEventListener('click', (event) => {
-  if (event.target.id === 'delete-book') {
-    const response = window.confirm( // eslint-disable-line no-alert
-      'Are you sure you want to remove this book?',
-    );
-    if (event.target && response === true) {
-      event.target.parentNode.remove();
-      const index = myLibrary.indexOf(this);
-      myLibrary.splice(index, 1);
-      event.preventDefault();
-    }
-  }
-});
-
-const boxVal = () => {
+const checkboxValue = () => {
   if (checkbox.checked === true) {
     return 'read';
   }
@@ -86,7 +78,7 @@ const addBookToLibrary = () => {
   const authorVal = author.value;
   const titleVal = title.value;
   const numPagesVal = numPages.value;
-  const read = boxVal();
+  const read = checkboxValue();
 
   const book = new Book(authorVal, titleVal, numPagesVal, read);
 
@@ -99,10 +91,9 @@ const addBookToLibrary = () => {
 
 newBook.onsubmit = () => {
   addBookToLibrary();
-  const lastItem = myLibrary.slice(-1)[0];
-  render(lastItem);
+  render();
   newBook.classList.toggle('d-none');
   resetForm();
 };
 
-formToggle.onclick = formDisplay;
+formToggle.onclick = displayForm;
