@@ -1,11 +1,13 @@
 const myLibrary = [];
 const myBooks = document.getElementById('books');
-const newBook = document.getElementById('create-book');
+const form = document.getElementById('form');
+const showForm = document.getElementById('showForm')
 const checkbox = document.getElementById('read');
 const formToggle = document.getElementById('form-toggle');
 const author = document.getElementById('author');
 const title = document.getElementById('title');
 const numPages = document.getElementById('numPages');
+const cancelButton = document.getElementById('cancelBtn')
 
 function Book(author, title, numPages, read) {
   this.author = author;
@@ -26,7 +28,7 @@ const changeReadStatus = (index) => {
 };
 
 const displayForm = () => {
-  newBook.classList.toggle('d-none');
+  showForm.classList.toggle('d-none');
 };
 
 const resetForm = () => {
@@ -53,8 +55,8 @@ const render = () => {
   for (let i = 0; i < myLibrary.length; i += 1) {
     const item = myLibrary[i];
     ele.innerHTML = card(item, i);
+    myBooks.appendChild(ele);
   }
-  myBooks.appendChild(ele);
 };
 
 const deleteBook = (index) => {
@@ -89,11 +91,12 @@ const addBookToLibrary = () => {
   return false;
 };
 
-newBook.onsubmit = () => {
+form.onsubmit = () => {
   addBookToLibrary();
   render();
-  newBook.classList.toggle('d-none');
+  showForm.classList.toggle('d-none');
   resetForm();
 };
 
+cancelButton.onclick = displayForm;
 formToggle.onclick = displayForm;

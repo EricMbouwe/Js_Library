@@ -30,8 +30,8 @@
     </div>
   </nav>
 
-  <div id="new-book">
-    <form id="create-book" class="mb-3 d-none centered">
+  <div id="showForm" class="d-none">
+    <form id="form" class="mb-3 form">
       <div class="mb-3">
         <label for="exampleInputEmail1" class="form-label">Author</label>
         <input type="text" class="form-control" id="author" required />
@@ -49,6 +49,7 @@
         <label class="form-check-label" for="exampleCheck1">Read</label>
       </div>
       <button type="submit" class="btn btn-primary">Add to Library</button>
+      <button type="submit" class="btn btn-primary ml-3" id="cancelBtn">Cancel</button>
     </form>
   </div>
 
